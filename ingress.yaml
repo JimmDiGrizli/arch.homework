@@ -14,7 +14,7 @@ spec:
           backend:
             serviceName: arch-homework-service
             servicePort: 8000
-        - path: /otus/alexander($|/.*)
+        - path: /otusapp/alexander($|/.*)
           backend:
             serviceName: arch-homework-service
             servicePort: 8000
