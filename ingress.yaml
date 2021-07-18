@@ -18,5 +18,3 @@ spec:
           backend:
             serviceName: arch-homework-service
             servicePort: 8000
-
-
