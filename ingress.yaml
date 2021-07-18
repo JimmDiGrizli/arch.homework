@@ -10,12 +10,13 @@ spec:
   - host: arch.homework
   - http:
       paths:
-        - path: /
+        - path: /($|)(.*)
           backend:
             serviceName: arch-homework-service
             servicePort: 8000
-        - path: /otusapp/alexander/*
+        - path: /otus/alexander($|/.*)
           backend:
             serviceName: arch-homework-service
             servicePort: 8000
+
 
