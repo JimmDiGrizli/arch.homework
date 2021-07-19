@@ -18,4 +18,3 @@ spec:
           ports:
             - name: web 
               containerPort: 8000
-
