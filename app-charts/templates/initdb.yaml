@@ -46,8 +46,17 @@ spec:
           - "-c"
           - |
             psql $DATABASE_URI <<'EOF'
-              create table client (id bigint primary key, username varchar, firstName varchar, lastName varchar, email varchar, phone varchar);
-              insert into client (id, username, firstName, lastName, email, phone) values (1, 'konst', 'Konstantin', 'Ivanov', 'konst777@ivanov.com', '+7 000 000 00 00' );
+                CREATE SEQUENCE IF NOT EXISTS users_id_seq;
+                CREATE TABLE IF NOT EXISTS users (
+                    id INTEGER NOT NULL DEFAULT nextval('users_id_seq') PRIMARY KEY,
+                    username VARCHAR(256),
+                    first_name VARCHAR(256),
+                    last_name VARCHAR(256),
+                    email VARCHAR(256),
+                    phone VARCHAR(256)
+                );
+                INSERT INTO users (username, first_name, last_name, email, phone)
+                VALUES ('konst', 'Konstantin', 'Konstantinov', 'konstantinov@gmail.com', '+7 000 000 00 00');
             EOF
 
   backoffLimit: 0

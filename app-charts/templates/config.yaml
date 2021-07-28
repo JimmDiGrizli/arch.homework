@@ -11,4 +11,4 @@ metadata:
   name: {{ include "app.fullname" . }}-secret
 type: Opaque
 data:
-  APP_DATABASE_URI: {{ printf "postgresql+psycopg2://%s:%s@%s:%s/%s" .Values.postgresql.postgresqlUsername .Values.postgresql.postgresqlPassword (include "postgresql.fullname" .) .Values.postgresql.service.port .Values.postgresql.postgresqlDatabase  | b64enc | quote }}
+  APP_DATABASE_URI: {{ printf "host=%s user=%s password=%s dbname=%s port=%s" (include "postgresql.fullname" .) .Values.postgresql.postgresqlUsername .Values.postgresql.postgresqlPassword .Values.postgresql.postgresqlDatabase .Values.postgresql.service.port   | b64enc | quote }}
