@@ -33,11 +33,11 @@ func main() {
 	db, _ = gorm.Open(postgres.Open(os.Getenv("DATABASE_URI")), &gorm.Config{})
 
 	router := mux.NewRouter()
-	router.HandleFunc("/health", HealthCheck).Methods("GET")
-	router.HandleFunc("/user", CreateUser).Methods("POST")
-	router.HandleFunc("/user/{id}", GetUser).Methods("GET")
-	router.HandleFunc("/user/{id}", UpdateUser).Methods("PUT")
-	router.HandleFunc("/user/{id}", DeleteUser).Methods("DELETE")
+	router.HandleFunc("/v1/health", HealthCheck).Methods("GET")
+	router.HandleFunc("/v1/user", CreateUser).Methods("POST")
+	router.HandleFunc("/v1/user/{id}", GetUser).Methods("GET")
+	router.HandleFunc("/v1/user/{id}", UpdateUser).Methods("PUT")
+	router.HandleFunc("/v1/user/{id}", DeleteUser).Methods("DELETE")
 
 	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), router))
 }
@@ -53,6 +53,7 @@ func CreateUser(writer http.ResponseWriter, request *http.Request) {
 	}
 
 	db.Create(&user)
+	fmt.Fprintf(writer, "{\"id\":"+strconv.Itoa(int(user.Id))+"}")
 	writer.WriteHeader(http.StatusOK)
 }
 

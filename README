@@ -1,4 +1,0 @@
-### Install
-```
-helm install arch-homework ./apps -f ./apps/values.yaml
-```

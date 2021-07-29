@@ -24,7 +24,7 @@ ingress:
     - host: arch.homework
       paths:
         - path: /
-          pathType: Prefix
+          pathType: ImplementationSpecific
   tls: []
 
 resources:
