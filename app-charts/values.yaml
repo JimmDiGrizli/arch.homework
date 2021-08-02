@@ -58,3 +58,8 @@ postgresql:
   service:
     type: LoadBalancer
     port: "5432"
+
+metrics:
+  enabled: true
+  serviceMonitor:
+    enabled: true
